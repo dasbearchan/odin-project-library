@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Page Title</title>
+        <link rel="stylesheet" href="styles.css"> <!-- Link to external stylesheet -->
+        <script src="library.js" defer></script> 
+        <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon -->
+        <meta name="description" content="A brief description of the page for SEO purposes.">
+        <meta name="author" content="Your Name">
+    </head>
+    <body>
+        <h1>My Library</h1>
+        <button id="new-book">New Book</button>
+        <dialog id="new-book-dialog">
+            <form method="dialog">
+                <h3>Form Title</h3>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+    
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+    
+                <menu>
+                    <button type="submit">Submit</button>
+                    <button type="button" id="close-dialog">Cancel</button>
+                </menu>
+            </form>
+        </dialog>
+        <div class="library">
+            <ol id="book-list"></ol>
+        </div>
+    </body>
+</html>
