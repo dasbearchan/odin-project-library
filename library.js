@@ -15,9 +15,9 @@ book2 = new Book("The Starless Sea", "Erin Morgenstern", 512, false);
 book3 = new Book("The Night Circus", "Erin Morgenstern", 510, true);
 book4 = new Book("Jonathan Strange & Mr Norrell", "Susanna Clark", 1006, true);
 book5 = new Book("Neverwhere", "Neil Gaiman", 370, false);
-book5 = new Book("The Buried Giant", "Kazuo Ishiguro", 317, false);
+book6 = new Book("The Buried Giant", "Kazuo Ishiguro", 317, false);
 
-archive.push(book1, book2, book3)
+archive.push(book1, book2, book3, book4, book5, book6)
 
 const bookList = document.getElementById("book-list");
 const btnNewBook = document.getElementById("new-book");
@@ -28,10 +28,27 @@ const btnSubmitDialog = document.getElementById('close-dialog');
 
 function updateLibrary() {
   bookList.innerHTML = ""
-  archive.forEach(book => {
-    const listItem = document.createElement("li")
-    listItem.innerText = book.getInfo()
-    bookList.append(listItem)
+  archive.forEach((book, index) => {
+    const card = document.createElement("div")
+    const cardTitle = document.createElement("p")
+    const btnX = document.createElement("button")
+    const btnRead = document.createElement("button")
+
+    card.innerText = book.getInfo()
+    btnX.innerText = " X "
+    btnX.addEventListener('click', () => {
+      archive.splice(index, 1)
+      updateLibrary()
+    })
+    btnRead.innerText = book.isRead
+    btnRead.addEventListener('click', () => {
+      book.isRead = !book.isRead
+      updateLibrary()
+    })
+
+    card.append(btnRead, btnX)
+    bookList.append(card)
+  
   })
   console.log(archive)
 }
@@ -61,6 +78,3 @@ btnCloseDialog.addEventListener('click', () => {
   dialog.close();
 })
 
-btnCloseDialog.addEventListener('click', () => {
-  dialog.close();
-})
