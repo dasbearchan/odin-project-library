@@ -30,23 +30,32 @@ function updateLibrary() {
   bookList.innerHTML = ""
   archive.forEach((book, index) => {
     const card = document.createElement("div")
+    const buttonDiv = document.createElement("div")
     const cardTitle = document.createElement("p")
+    const cardAuthor = document.createElement("p")
+    const cardPages = document.createElement("p")
     const btnX = document.createElement("button")
     const btnRead = document.createElement("button")
 
-    card.innerText = book.getInfo()
-    btnX.innerText = " X "
+    card.className = "card"
+    buttonDiv.className = "buttonDiv"
+    cardTitle.innerText = book.title
+    cardAuthor.innerText = `by ${book.author}`
+    cardPages.innerText = book.pages
+    btnX.innerText = "Remove"
+    btnRead.innerText = book.isRead
+
     btnX.addEventListener('click', () => {
       archive.splice(index, 1)
       updateLibrary()
     })
-    btnRead.innerText = book.isRead
     btnRead.addEventListener('click', () => {
       book.isRead = !book.isRead
       updateLibrary()
     })
 
-    card.append(btnRead, btnX)
+    buttonDiv.append(btnRead, btnX)
+    card.append(cardTitle, cardAuthor, cardPages, buttonDiv)
     bookList.append(card)
   
   })
@@ -62,7 +71,7 @@ form.addEventListener('submit', (e) => {
   const title = formData.get('title')
   const author = formData.get('author');
   const pages = formData.get('pages')
-  const read = formData.get('read')
+  const read = document.getElementById("read").checked
 
   const newBook = new Book(title, author, pages, read)
   archive.push(newBook)
